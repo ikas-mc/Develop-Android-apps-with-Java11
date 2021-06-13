@@ -4,19 +4,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import ikas.android.demo.java11.R;
+import ikas.android.demo.java11.databinding.MainFragmentBinding;
 
 public class MainFragment extends Fragment {
 
     private MainViewModel mainViewModel;
-    private TextView contentView;
+    private MainFragmentBinding view;
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -31,27 +30,23 @@ public class MainFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        var view = inflater.inflate(R.layout.main_fragment, container, false);
-        return view;
+        view = MainFragmentBinding.inflate(inflater, container, false);
+        return view.getRoot();
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        contentView = view.findViewById(R.id.content);
-
-        var runBtn = view.findViewById(R.id.run);
-        runBtn.setOnClickListener(this::query);
-
+    public void onViewCreated(@NonNull View root, @Nullable Bundle savedInstanceState) {
+        view.run.setOnClickListener(this::queryAsync);
         mainViewModel.content.observe(this.getViewLifecycleOwner(), this::updateContent);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        contentView = null;
+        view = null;
     }
 
-    public void query(View v) {
+    public void queryAsync(View v) {
         var data = getArguments();
         if (null != data) {
             mainViewModel.queryAsync(data.getString("key"));
@@ -59,7 +54,7 @@ public class MainFragment extends Fragment {
     }
 
     public void updateContent(String content) {
-        contentView.setText(content);
+        view.content.setText(content);
     }
 
 }

@@ -11,18 +11,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.main_activity);
 
         if (savedInstanceState == null) {
-            var page = MainFragment.newInstance();
-            var fragmentManager = getSupportFragmentManager();
-
             var data = new Bundle();
             data.putString("key", "hello java 11");
+
+            var page = MainFragment.newInstance();
             page.setArguments(data);
 
-            fragmentManager.beginTransaction().replace(R.id.container, page).commitNow();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, page).commitNow();
         }
     }
 }

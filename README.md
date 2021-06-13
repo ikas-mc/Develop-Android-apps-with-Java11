@@ -31,6 +31,17 @@ dependencies {
     compileOnly files("${android.sdkDirectory.path}/platforms/${android.compileSdkVersion}/android.jar")
 }
 ```
+
+```groovy
+apply plugin: 'idea'
+idea {
+    module {
+        //3. fix viewBinding for idea
+        sourceDirs += file("${module.project.buildDir}/generated/data_binding_base_class_source_out/debug/out")
+    }
+}
+```
+
 ### more
 supported java language features
 ```

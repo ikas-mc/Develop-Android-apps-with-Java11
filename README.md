@@ -2,6 +2,7 @@
 AGP 7.0.0  
 Use Java 11 source code in your project  
 https://developer.android.com/studio/releases/gradle-plugin#jdk-11
+https://developer.android.com/studio/releases/gradle-plugin#java-11
 
 
 ========= Deprecated =========

@@ -1,6 +1,10 @@
 # Develop Android apps with Java 11
+AGP 7.0.0  
+Use Java 11 source code in your project  
+https://developer.android.com/studio/releases/gradle-plugin#jdk-11
 
 
+========= Deprecated =========
 ### code sample
 
 ```java
